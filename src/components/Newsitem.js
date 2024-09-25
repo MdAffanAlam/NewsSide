@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 
 export default class Newsitem extends Component {
+  
   render() {
     let { title, description,imageurl,newsurl } = this.props;
     return (
-      <div>
+      
         <div className="card my-2" style={{ width: "18rem" }}>
           <img
             src={!imageurl?"headlines.jpg":imageurl}
@@ -20,7 +21,6 @@ export default class Newsitem extends Component {
           </div>
         </div>
        
-      </div>
     );
   }
 }

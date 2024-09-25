@@ -1,24 +1,31 @@
-
 import './App.css';
 import Navbar from './components/Navbar';
 import News from './components/News';
-
-
-
-import React, { Component } from 'react'
 import Footer from './components/Footer';
-
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 export default class App extends Component {
   render() {
     return (
-      <div>   <>
-      <Navbar title="NewsSide"/>
-       <News pagesize={8}/>
-       <Footer/>
-     </></div>
-    )
+        <Router>
+          <Navbar title="NewsSide" />
+          
+          {/* Define Routes here */}
+          
+            <Routes>
+              <Route exact path="/" element={<News pagesize={12} category="general" />} />
+              <Route path="/sports" element={<News pagesize={12} category="sports" />} />
+              <Route path="/politics" element={<News pagesize={12} category="politics" />} />
+              <Route path="/entertainment" element={<News pagesize={12} category="entertainment" />} />
+              <Route path="/serials" element={<News pagesize={12} category="serials" />} />
+            </Routes>
+      
+
+          {/* Footer stays at the bottom */}
+          <Footer />
+        </Router>
+    
+    );
   }
 }
-
-
