@@ -14,11 +14,11 @@ export default class App extends Component {
           {/* Define Routes here */}
           
             <Routes>
-              <Route exact path="/" element={<News pagesize={12} category="general" />} />
-              <Route path="/sports" element={<News pagesize={12} category="sports" />} />
-              <Route path="/politics" element={<News pagesize={12} category="politics" />} />
-              <Route path="/entertainment" element={<News pagesize={12} category="entertainment" />} />
-              <Route path="/serials" element={<News pagesize={12} category="serials" />} />
+              <Route exact path="/" element={<News pagesize={20} category="general" />} />
+              <Route path="/sports" element={<News pagesize={20} category="sports" />} />
+              <Route path="/politics" element={<News pagesize={20} category="politics" />} />
+              <Route path="/entertainment" element={<News pagesize={20} category="entertainment" />} />
+              <Route path="/serials" element={<News pagesize={20} category="serials" />} />
             </Routes>
       
 
