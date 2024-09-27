@@ -8,21 +8,31 @@ export default class News extends Component {
 
   constructor() {
     super();
+   // let {sports,serials,politics,entertainments}=this.props;
     this.state = {
       articles: this.articles,
       loading: false,
       page: 1,
       search: "india",
-      totalResult:16,
+      totalResult: 20,
+      pageIncDec: 20,
     };
     this.handleChange = this.handleChange.bind(this);
     this.getData = this.getData.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   async handleChange(e) {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     this.setState({
       search: e.target.value,
     });
+  }
+  async handleSubmit(e){
+    e.preventDefault(); 
+    this.getData();
+    setTimeout(() => {
+      e.target.reset(); 
+    }, 10000); 
   }
 
   async getData() {
@@ -61,6 +71,7 @@ export default class News extends Component {
       articles: parsedData.articles,
       totalResult: parsedData.totalResults,
       loading: false,
+      pageIncDec: this.state.pageIncDec - this.props.pagesize,
     });
   };
   handleNextclick = async () => {
@@ -87,13 +98,16 @@ export default class News extends Component {
         articles: parsedData.articles,
         totalResult: parsedData.totalResults,
         loading: false,
+        pageIncDec: this.state.pageIncDec + this.props.pagesize,
       });
     }
   };
   render() {
+    
     return (
       <div className="container my-3 h-100">
-        <div className="m-4  text-center">
+        <div className="m-4 text-center">
+          <form onSubmit={this.handleSubmit}>
           <input
             type="text"
             style={{
@@ -101,7 +115,8 @@ export default class News extends Component {
               padding: "8px 6px",
               border: "1px solid",
               borderRadius: "8px",
-              backgroundColor:'whitesmoke'
+              backgroundColor: "whitesmoke",
+              marginTop:"65px",
             }}
             name="search"
             placeholder="Enter the Type of News You Want"
@@ -111,7 +126,7 @@ export default class News extends Component {
             type="button"
             onClick={this.getData}
             style={{
-              marginLeft:'8px',
+              marginLeft: "8px",
               padding: "8px 16px",
               backgroundColor: "#3b82f6",
               color: "white",
@@ -138,6 +153,7 @@ export default class News extends Component {
             <FaSearch style={{ marginRight: "8px" }} />
             Search
           </button>
+          </form>
         </div>
         <h2 className="text-center">NewsSide--top Headlines</h2>
         {this.state.loading && <Spinner />}
@@ -159,7 +175,10 @@ export default class News extends Component {
               );
             })}
         </div>
-        <div className="container d-flex justify-content-between" style={{marginTop:"40px"}}>
+        <div
+          className="container d-flex justify-content-between"
+          style={{ marginTop: "40px" }}
+        >
           <button
             disabled={this.state.page <= 1}
             type="button"
@@ -168,7 +187,8 @@ export default class News extends Component {
           >
             &larr; Previous
           </button>
-          <span>{`${this.state.page} / ${this.state.totalResult -this.state.page}`}</span>
+          <span className="fw-bold">{`Page ${this.state.page} -> ${this.state.pageIncDec} / ${this.state.totalResult}`}</span>
+
           <button
             disabled={
               this.state.page + 1 >

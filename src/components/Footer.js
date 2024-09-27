@@ -4,15 +4,14 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="footer py-3 bg-dark text-white w-full">
+    <footer className="footer py-3 bg-dark text-black w-full fw-bold  bg-primary bg-opacity-50">
       <div className="container text-center footer">
         <p>
           &copy; {new Date().getFullYear()}{" "}
           <i
              class="fa-solid fa-file-word"
             style={{ marginLeft: "8px", marginRight: "8px" }}
-          ></i>{" "}
-          NewsSide. All Rights Reserved.
+          ></i>NewsSide. All Rights Reserved.
         </p>
         {/* style={{ marginLeft: "8px", marginRight: "8px" }} <div className="social-icons mt-3">
           * Social Media Icons 

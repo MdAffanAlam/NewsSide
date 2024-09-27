@@ -9,7 +9,7 @@ export default class Navbar extends Component {
     let { title } = this.props;
     return (
       <div>
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top bg-primary bg-opacity-75">
           <div className="container-fluid">
             <NavLink className="navbar-brand" to="/">
               <SiNextdotjs style={{ color: "#fff", fontSize: "1.5em" }} />{" "}
@@ -29,12 +29,12 @@ export default class Navbar extends Component {
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav">
                 <li className="nav-item ">
-                  <NavLink className="nav-link" aria-current="page" to="/">
+                  <NavLink className="nav-link" aria-current="page" to="/" >
                     <FaHome className="text-info mb-1" /> Home
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/sports">
+                  <NavLink className="nav-link" to="/sports" >
                     <FaFutbol className="text-success mb-1" /> Sports
                   </NavLink>
                 </li>
