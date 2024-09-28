@@ -5,6 +5,19 @@ import { FaSun, FaMoon } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
 export default class Navbar extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+      mode:"light",
+      icon:"FaSun",
+    }
+  }
+  handleMode=()=>{
+    this.setState({
+      mode:this.state.mode==="light"?"dark":"light",
+      icon:"FaMoon",
+    })
+  }
   render() {
     let { title } = this.props;
     return (
@@ -54,16 +67,16 @@ export default class Navbar extends Component {
                   </NavLink>
                 </li>
                 <li
-                  className=" mt-2 h-5"
+                  className=" mt-2 h-5 bg-black bg-opacity-25"
                   style={{
-                    backgroundColor: " rgb(3 7 18)",
                     borderRadius: "20px",
                     padding: "0 9px",
                     marginLeft:"8px",
                     marginBottom:"2px"
                   }}
+                  onClick={this.handleMode}
                 >
-                  <FaSun style={{color:"yellow"}} size={17} />
+                  {this.state.mode==="light"?<FaSun style={{color:"yellow"}} size={17} />:<FaMoon style={{color:"yellow"}} size={17} />}
                 </li>
               </ul>
             </div>

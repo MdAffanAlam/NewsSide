@@ -6,33 +6,44 @@ import { FaSearch } from "react-icons/fa";
 export default class News extends Component {
   articles = [];
 
-  constructor() {
-    super();
-   // let {sports,serials,politics,entertainments}=this.props;
+  constructor(props) {
+    super(props);
     this.state = {
       articles: this.articles,
       loading: false,
       page: 1,
-      search: "india",
+      search: props.category,
       totalResult: 20,
       pageIncDec: 20,
     };
+
+    //binding methods
     this.handleChange = this.handleChange.bind(this);
     this.getData = this.getData.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  //news category
+  componentDidUpdate(prevProps) {
+    if (prevProps.category !== this.props.category) {
+      this.setState({ search: this.props.category, page: 1 }, () => {
+        this.getData();
+      });
+    }
+  }
+
   async handleChange(e) {
     // console.log(e.target.value);
     this.setState({
       search: e.target.value,
     });
   }
-  async handleSubmit(e){
-    e.preventDefault(); 
+  async handleSubmit(e) {
+    e.preventDefault();
     this.getData();
     setTimeout(() => {
-      e.target.reset(); 
-    }, 10000); 
+      e.target.reset();
+    }, 10000);
   }
 
   async getData() {
@@ -103,59 +114,58 @@ export default class News extends Component {
     }
   };
   render() {
-    
     return (
       <div className="container my-3 h-100">
         <div className="m-4 text-center">
           <form onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            style={{
-              minWidth: "35%",
-              padding: "8px 6px",
-              border: "1px solid",
-              borderRadius: "8px",
-              backgroundColor: "whitesmoke",
-              marginTop:"65px",
-            }}
-            name="search"
-            placeholder="Enter the Type of News You Want"
-            onChange={this.handleChange}
-          />
-          <button
-            type="button"
-            onClick={this.getData}
-            style={{
-              marginLeft: "8px",
-              padding: "8px 16px",
-              backgroundColor: "#3b82f6",
-              color: "white",
-              fontWeight: 600,
-              borderRadius: "8px",
-              border: "none",
-              cursor: "pointer",
-              transition: "background-color 200ms ease-in-out",
-              outline: "none",
-            }}
-            onMouseEnter={(e) =>
-              (e.currentTarget.style.backgroundColor = "#2563eb")
-            }
-            onMouseLeave={(e) =>
-              (e.currentTarget.style.backgroundColor = "#3b82f6")
-            }
-            onMouseDown={(e) =>
-              (e.currentTarget.style.backgroundColor = "#1d4ed8")
-            }
-            onMouseUp={(e) =>
-              (e.currentTarget.style.backgroundColor = "#2563eb")
-            }
-          >
-            <FaSearch style={{ marginRight: "8px" }} />
-            Search
-          </button>
+            <input
+              type="text"
+              style={{
+                minWidth: "40%",
+                padding: "8px 6px",
+                border: "1px solid",
+                borderRadius: "8px",
+                backgroundColor: "whitesmoke",
+                marginTop: "65px",
+              }}
+              name="search"
+              placeholder="Enter the Type of News You Want"
+              onChange={this.handleChange}
+            />
+            <button
+              type="button"
+              onClick={this.getData}
+              style={{
+                marginLeft: "8px",
+                padding: "8px 10px",
+                backgroundColor: "#3b82f6",
+                color: "white",
+                fontWeight: 600,
+                borderRadius: "8px",
+                border: "none",
+                cursor: "pointer",
+                transition: "background-color 200ms ease-in-out",
+                outline: "none",
+              }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.backgroundColor = "#2563eb")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.backgroundColor = "#3b82f6")
+              }
+              onMouseDown={(e) =>
+                (e.currentTarget.style.backgroundColor = "#1d4ed8")
+              }
+              onMouseUp={(e) =>
+                (e.currentTarget.style.backgroundColor = "#2563eb")
+              }
+            >
+              <FaSearch style={{ marginRight: "8px" }} />
+              Search
+            </button>
           </form>
         </div>
-        <h2 className="text-center">NewsSide--top Headlines</h2>
+        <h2 className="text-center">NewsSide--{this.props.category.to } Top Headlines</h2>
         {this.state.loading && <Spinner />}
         <div className="row g-6">
           {!this.state.loading &&

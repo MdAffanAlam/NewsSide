@@ -6,6 +6,13 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 export default class App extends Component {
+  // constructor(){
+  //   super();
+  //   this.state={
+  //     mode:"light",
+  //     icon:"FaSun",
+  //   }
+  // }
   render() {
     return (
         <Router>
@@ -14,8 +21,8 @@ export default class App extends Component {
           {/* Define Routes here */}
           
             <Routes>
-              <Route exact path="/" element={<News pagesize={20} category="general" />} />
-              <Route path="/sports" element={<News pagesize={20} category="sports" search="sports"/>} />
+              <Route exact path="/" element={<News pagesize={20} category="india" />} />
+              <Route path="/sports" element={<News pagesize={20} category="sports"/>} />
               <Route path="/politics" element={<News pagesize={20} category="politics" />} />
               <Route path="/entertainment" element={<News pagesize={20} category="entertainment" />} />
               <Route path="/serials" element={<News pagesize={20} category="serials" />} />

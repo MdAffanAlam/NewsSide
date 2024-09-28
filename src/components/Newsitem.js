@@ -6,6 +6,10 @@ export default class Newsitem extends Component {
     let { title, description, imageurl, newsurl } = this.props;
     return (
       <div className="card my-4" style={{ width: "18rem", boxShadow:' 0 0 20px rgba(0, 0, 0, 0.4)', }}>
+        <span className="position-absolute bg-danger bg-opacity-75 text-light rounded-2 py-0.5 px-2" style={{
+          top:"-10px",
+          left:"-12px",
+        }}>New</span>
         <img
           src={!imageurl ? removeImage : imageurl}
           className="card-img-top"
