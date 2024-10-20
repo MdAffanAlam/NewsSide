@@ -3,3 +3,16 @@
 #root {
   height: 100%;
 }
+
+.light-mode {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+
+.dark-mode {
+  background-color: #191515f1;
+  color: #ffffff;
+}
+
+

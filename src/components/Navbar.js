@@ -1,31 +1,27 @@
 import React, { Component } from "react";
-import { FaHome, FaFutbol, FaNewspaper, FaFilm, FaTv } from "react-icons/fa"; // Import necessary icons
+import { FaHome, FaFutbol, FaNewspaper, FaFilm, FaTv, FaSun, FaMoon } from "react-icons/fa"; // Import necessary icons
 import { SiNextdotjs } from "react-icons/si";
-import { FaSun, FaMoon } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import ThemeContext from '../context/ThemeContext'; 
 
 export default class Navbar extends Component {
-  constructor(props){
-    super(props);
-    this.state={
-      mode:"light",
-      icon:"FaSun",
-    }
-  }
-  handleMode=()=>{
-    this.setState({
-      mode:this.state.mode==="light"?"dark":"light",
-      icon:"FaMoon",
-    })
-  }
+   static contextType = ThemeContext;  
+
+  handleMode = () => {
+    const { toggleTheme } = this.context;  
+    toggleTheme();  
+  };
+
   render() {
+    const { isDarkMode } = this.context;  
     let { title } = this.props;
+    
     return (
-      <div>
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top bg-primary bg-opacity-75">
+   
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top bg-opacity-75" >
           <div className="container-fluid">
             <NavLink className="navbar-brand" to="/">
-              <SiNextdotjs style={{ color: "#fff", fontSize: "1.5em" }} />{" "}
+              <SiNextdotjs style={{ fontSize: "1.5em" }} />{" "}
               {title}
             </NavLink>
             <button
@@ -41,13 +37,13 @@ export default class Navbar extends Component {
             </button>
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav">
-                <li className="nav-item ">
-                  <NavLink className="nav-link" aria-current="page" to="/" >
+                <li className="nav-item">
+                  <NavLink className="nav-link" aria-current="page" to="/">
                     <FaHome className="text-info mb-1" /> Home
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/sports" >
+                  <NavLink className="nav-link" to="/sports">
                     <FaFutbol className="text-success mb-1" /> Sports
                   </NavLink>
                 </li>
@@ -67,22 +63,27 @@ export default class Navbar extends Component {
                   </NavLink>
                 </li>
                 <li
-                  className=" mt-2 h-5 bg-black bg-opacity-25"
+                  className="mt-2 h-5 bg-black bg-opacity-25"
                   style={{
                     borderRadius: "20px",
                     padding: "0 9px",
-                    marginLeft:"8px",
-                    marginBottom:"2px"
+                    marginLeft: "8px",
+                    marginBottom: "2px",
+                    width: "fit-content",
+                    cursor: "pointer"
                   }}
                   onClick={this.handleMode}
                 >
-                  {this.state.mode==="light"?<FaSun style={{color:"yellow"}} size={17} />:<FaMoon style={{color:"yellow"}} size={17} />}
+                  {isDarkMode ? (
+                    <FaMoon style={{ color: "yellow" }} size={17} />
+                  ) : (
+                    <FaSun style={{ color: "yellow" }} size={17} />
+                  )}
                 </li>
               </ul>
             </div>
           </div>
         </nav>
-      </div>
     );
   }
 }

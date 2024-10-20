@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import Newsitem from "./Newsitem";
 import Spinner from "./Spinner";
 import { FaSearch } from "react-icons/fa";
+import ThemeContext from "../context/ThemeContext";
 
 export default class News extends Component {
   articles = [];
+  static contextType = ThemeContext;
 
   constructor(props) {
     super(props);
@@ -113,7 +115,9 @@ export default class News extends Component {
       });
     }
   };
+
   render() {
+    const { isDarkMode } = this.context;
     return (
       <div className="container my-3 h-100">
         <div className="m-4 text-center">
@@ -165,7 +169,9 @@ export default class News extends Component {
             </button>
           </form>
         </div>
-        <h2 className="text-center">NewsSide--{this.props.category.to } Top Headlines</h2>
+        <h2 className="text-center">
+          NewsSide--{this.props.category.to} Top Headlines
+        </h2>
         {this.state.loading && <Spinner />}
         <div className="row g-6">
           {!this.state.loading &&
@@ -193,6 +199,11 @@ export default class News extends Component {
             disabled={this.state.page <= 1}
             type="button"
             className="btn btn-dark"
+            style={{
+              boxShadow: isDarkMode
+                ? "0 0 20px rgba(255, 255, 255, 0.4)"
+                : "0 0 20px rgba(0, 0, 0, 0.4)",
+            }}
             onClick={this.handelpreviousclick}
           >
             &larr; Previous
@@ -206,6 +217,11 @@ export default class News extends Component {
             }
             type="button"
             className="btn btn-dark"
+            style={{
+              boxShadow: isDarkMode
+                ? "0 0 20px rgba(255, 255, 255, 0.4)"
+                : "0 0 20px rgba(0, 0, 0, 0.4)",
+            }}
             onClick={this.handleNextclick}
           >
             Next &rarr;
