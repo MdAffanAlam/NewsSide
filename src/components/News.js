@@ -133,7 +133,7 @@ export default class News extends Component {
                 marginTop: "65px",
               }}
               name="search"
-              placeholder="Enter the Type of News You Want"
+              placeholder="Enter the News Type"
               onChange={this.handleChange}
             />
             <button
@@ -169,7 +169,7 @@ export default class News extends Component {
             </button>
           </form>
         </div>
-        <h2 className="text-center">
+        <h2 className="text-center m-2">
           NewsSide--{this.props.category.to} Top Headlines
         </h2>
         {this.state.loading && <Spinner />}
@@ -203,6 +203,8 @@ export default class News extends Component {
               boxShadow: isDarkMode
                 ? "0 0 20px rgba(255, 255, 255, 0.4)"
                 : "0 0 20px rgba(0, 0, 0, 0.4)",
+                cursor:"pointer",
+                fontWeight:this.state.page<=1?"":"bold",
             }}
             onClick={this.handelpreviousclick}
           >
@@ -221,6 +223,10 @@ export default class News extends Component {
               boxShadow: isDarkMode
                 ? "0 0 20px rgba(255, 255, 255, 0.4)"
                 : "0 0 20px rgba(0, 0, 0, 0.4)",
+                cursor:this.state.page + 1 >
+                Math.ceil(this.state.totalResult / this.props.pagesize)?"not-allowed":"pointer",
+                fontWeight:this.state.page + 1 >
+                Math.ceil(this.state.totalResult / this.props.pagesize)?"":"bold"
             }}
             onClick={this.handleNextclick}
           >
