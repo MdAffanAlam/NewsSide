@@ -18,7 +18,7 @@ export default class Navbar extends Component {
     
     return (
    
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top bg-opacity-75" >
+        <nav className={`navbar navbar-expand-lg navbar-dark bg-dark fixed-top ${isDarkMode?'bg-opacity-100':'bg-opacity-75'}`} >
           <div className="container-fluid">
             <NavLink className="navbar-brand" to="/">
               <SiNextdotjs style={{ fontSize: "1.5em" }} />{" "}

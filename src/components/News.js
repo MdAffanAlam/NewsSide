@@ -3,6 +3,8 @@ import Newsitem from "./Newsitem";
 import Spinner from "./Spinner";
 import { FaSearch } from "react-icons/fa";
 import ThemeContext from "../context/ThemeContext";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export default class News extends Component {
   articles = [];
@@ -32,6 +34,7 @@ export default class News extends Component {
         this.getData();
       });
     }
+    AOS.refresh();
   }
 
   async handleChange(e) {
@@ -65,6 +68,11 @@ export default class News extends Component {
 
   async componentDidMount() {
     this.getData();
+
+    AOS.init({
+      duration: 1000, 
+      once: false,
+    });
   }
   handelpreviousclick = async () => {
     let apiKey = "316379ccdd094a049132f4ef28ca9f20";
@@ -180,6 +188,7 @@ export default class News extends Component {
                 <div
                   className="col-12 col-md-6 col-lg-4 col-xl-3 d-flex justify-content-center"
                   key={element.url}
+                  data-aos="zoom-in"
                 >
                   <Newsitem
                     title={element.title ? element.title : ""}
