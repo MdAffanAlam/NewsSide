@@ -208,7 +208,7 @@ export default class News extends Component {
           <button
             disabled={this.state.page <= 1}
             type="button"
-            data-aos="zoom-out"
+            data-aos="fade-in"
             className="btn btn-dark"
             style={{
               boxShadow: isDarkMode
@@ -230,11 +230,11 @@ export default class News extends Component {
             }
             type="button"
             className="btn btn-dark"
-            data-aos="zoom-out"
+            data-aos="fade-in"
             style={{
               boxShadow: isDarkMode
                 ? "0 0 20px rgba(255, 255, 255, 0.4)"
-                : "0 0 20px rgba(0, 0, 0, 0.4)",
+                : "0 0 20px rgba(0, 0, 0, 0.5)",
                 cursor:this.state.page + 1 >
                 Math.ceil(this.state.totalResult / this.props.pagesize)?"not-allowed":"pointer",
                 fontWeight:this.state.page + 1 >
