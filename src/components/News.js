@@ -8,6 +8,7 @@ import 'aos/dist/aos.css';
 
 export default class News extends Component {
   articles = [];
+  
   static contextType = ThemeContext;
 
   constructor(props) {
@@ -207,6 +208,7 @@ export default class News extends Component {
           <button
             disabled={this.state.page <= 1}
             type="button"
+            data-aos="zoom-out"
             className="btn btn-dark"
             style={{
               boxShadow: isDarkMode
@@ -219,7 +221,7 @@ export default class News extends Component {
           >
             &larr; Previous
           </button>
-          <span className="fw-bold">{`Page ${this.state.page} -> ${this.state.pageIncDec} / ${this.state.totalResult}`}</span>
+          <span className="fw-bold">{`Page ${this.state.page}->${this.state.pageIncDec}/${this.state.totalResult}`}</span>
 
           <button
             disabled={
@@ -228,6 +230,7 @@ export default class News extends Component {
             }
             type="button"
             className="btn btn-dark"
+            data-aos="zoom-out"
             style={{
               boxShadow: isDarkMode
                 ? "0 0 20px rgba(255, 255, 255, 0.4)"

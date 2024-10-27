@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-import { FaHome, FaFutbol, FaNewspaper, FaFilm, FaTv, FaSun, FaMoon } from "react-icons/fa"; // Import necessary icons
+import { FaHome, FaFutbol, FaNewspaper, FaFilm, FaTv, FaSun, FaMoon } from "react-icons/fa"; 
 import { SiNextdotjs } from "react-icons/si";
 import { NavLink } from "react-router-dom";
 import ThemeContext from '../context/ThemeContext'; 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export default class Navbar extends Component {
    static contextType = ThemeContext;  
@@ -11,6 +13,14 @@ export default class Navbar extends Component {
     const { toggleTheme } = this.context;  
     toggleTheme();  
   };
+  async componentDidMount() {
+    this.getData();
+
+    AOS.init({
+      duration: 1000, 
+      once: false,
+    });
+  }
 
   render() {
     const { isDarkMode } = this.context;  
@@ -18,7 +28,7 @@ export default class Navbar extends Component {
     
     return (
    
-        <nav className={`navbar navbar-expand-lg navbar-dark bg-dark fixed-top ${isDarkMode?'bg-opacity-100':'bg-opacity-75'}`} >
+        <nav className={`navbar navbar-expand-lg navbar-dark bg-dark fixed-top ${isDarkMode?'bg-opacity-100':'bg-opacity-75'}`} data-aos="zoom-out" >
           <div className="container-fluid">
             <NavLink className="navbar-brand" to="/">
               <SiNextdotjs style={{ fontSize: "1.5em" }} />{" "}
@@ -75,9 +85,9 @@ export default class Navbar extends Component {
                   onClick={this.handleMode}
                 >
                   {isDarkMode ? (
-                    <FaMoon style={{ color: "yellow" }} size={17} />
+                    <FaMoon style={{ color: "yellow" }} size={17} className="transition-opacity duration-300"/>
                   ) : (
-                    <FaSun style={{ color: "yellow" }} size={17} />
+                    <FaSun style={{ color: "yellow" }} size={17} className="transition-opacity duration-300"/>
                   )}
                 </li>
               </ul>
