@@ -9,10 +9,10 @@ export default class Footer extends Component {
       <footer className={`footer py-3 bg-dark ${isDarkMode}?'text-white': 'text-black'; w-full fw-bold bg-primary bg-opacity-50`}>
         <div className="container text-center footer">
           <p>
-            &copy; {new Date().getFullYear()}{" "}
+            &copy; {new Date().getFullYear()}
             <i
               className="fa-solid fa-file-word"
-              style={{ marginLeft: "8px", marginRight: "8px" }}
+              style={{ marginLeft: "8px", marginRight: "6px" }}
             ></i>
             NewsSide. All Rights Reserved.
           </p>
